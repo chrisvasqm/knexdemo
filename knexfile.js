@@ -1,7 +1,7 @@
 // This the only way that Knex can ready dotenv values
 require('dotenv').config();
 
-const config = {
+const knex = require('knex')({
   client: process.env.DATABASE_CLIENT,
   connection: {
     host: process.env.DATABASE_HOST,
@@ -16,8 +16,12 @@ const config = {
   },
   migrations: {
     tableName: 'knex_migrations',
-    directory: __dirname + '/data/migrations'
+    directory: __dirname + '/migrations'
   },
-}
+});
 
-module.exports = config;
+knex.migrate.latest()
+    .then(() => console.log('Migrations have run successfully'))
+    .catch(error => console.error('Error running migrations:', error));
+
+module.exports = knex;

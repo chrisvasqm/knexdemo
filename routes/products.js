@@ -1,4 +1,4 @@
-const database = require('../data/database');
+const knex = require('../knexfile');
 const { Router } = require('express');
 const { z } = require('zod');
 
@@ -11,7 +11,7 @@ const schema = z.object({
 const router = Router();
 
 router.get('/products', (_, response) => {
-    database('products')
+    knex('products')
         .then(products => response.send(products))
         .catch(_ => response.status(500).send('Failed to fetch products'));
 });
@@ -23,7 +23,7 @@ router.post('/products', (request, response) => {
 
     const { name, price, quantity } = request.body;
 
-    database('products')
+    knex('products')
         .insert({ name, price, quantity })
         .returning('*')
         .then(product => response.send(product))
