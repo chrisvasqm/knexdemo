@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const config = {
     client: process.env.DATABASE_CLIENT,
     connection: {

@@ -1,10 +1,10 @@
 const knex = require("knex");
 const config = require("./knexfile");
 
-const database = knex(config);
+const db = knex(config);
 
-database.migrate.latest()
+db.migrate.latest()
     .then(() => console.log('Migrations have run successfully'))
     .catch(error => console.error('Error running migrations:', error))
 
-module.exports = database;
+module.exports = db;
