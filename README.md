@@ -53,5 +53,5 @@ npm run dev
 Once you see the message "Server listening on http://localhost:3000" you should be good to go.
 
 > [!NOTE]
-> To confirm that everythnig was setup smoothly, you can install your favorite Database Management Tool and connect directly to the database to see how each table has been created and from where the Products API is fetching and creating data from.
+> To confirm that everything was setup smoothly, you can install your favorite Database Management Tool and connect directly to the database to see how each table has been created and from where the Products API is fetching and creating data from.
 > In case you don't have any, I would recommend using [DBeaver Community](https://dbeaver.io/download/) which a great free GUI cross-platform.
