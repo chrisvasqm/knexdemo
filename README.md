@@ -21,6 +21,9 @@ Due to the way that `Knex` works, there's a specific set of rules we need to fol
 5. In order to have migrations be executed programatically to avoid having to run them manually, there must be another module that will import the `knexfile` configuration object and then call `.migrate.latest()`, which returns a `Promise`, so we must handle both success and failure scenarios (check how it's done in `/data/database.js`).
 6. This object that is responsible for the programatic migrations can then be exported and used in your `routes` to query or mutate data in the actual database.
 
+> [!WARNING]
+> If you plan on adding a new migration, make sure to stop your `nodemon` execution locally to avoid the auto-refresh to pick up the migration before it's ready to be applied to the database. Otherwise, you will have to manually delete the migration record from the database and re-run the server to pick up correclty.
+
 ## Getting started
 
 ### Optional
