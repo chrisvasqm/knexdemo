@@ -1,5 +1,5 @@
 // This the only way that Knex can ready dotenv values
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config();
 
 const config = {
   client: process.env.DATABASE_CLIENT,
@@ -16,7 +16,7 @@ const config = {
   },
   migrations: {
     tableName: 'knex_migrations',
-    directory: __dirname + '/migrations'
+    directory: __dirname + '/data/migrations'
   },
 }
 
