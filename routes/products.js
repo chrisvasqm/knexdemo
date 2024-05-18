@@ -12,8 +12,8 @@ const router = Router();
 
 router.get('/products', (_, response) => {
     database('products')
-        .then(products => res.send(products))
-        .catch(_ => res.status(500).send('Failed to fetch products'));
+        .then(products => response.send(products))
+        .catch(_ => response.status(500).send('Failed to fetch products'));
 });
 
 router.post('/products', (request, response) => {
