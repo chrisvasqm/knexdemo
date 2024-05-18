@@ -7,10 +7,6 @@
     "dev": "nodemon index.js",
     "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "cors": "2.8.5",
     "dotenv": "16.4.5",
