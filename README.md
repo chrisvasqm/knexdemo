@@ -15,20 +15,19 @@ Before you start coding away, make sure to install:
 Due to the way that `Knex` works, there's a specific set of rules we need to follow:
 
 1. There needs to be a file named `knexfile.js` somewhere in the project, preferably in the `/` root folder.
-2. This `knexfile.js` must export an `object` with a specific set of properties depending on the Database Provider your project uses (in this case PostgreSQL).
-3. The `knexfile.js` must point to the folder relative to it's path, where the `migrations` folder will be located (in this case, the `/data/migrations`).
-4. At the top of the `knexfile.js`, we must call `dotenv` and configure it. In case you move it to a subfolder, you must pass an object to the `.config` method providing the path back to the `/` folder where your `.env` should be.
-5. In order to have migrations be executed programatically to avoid having to run them manually, there must be another module that will import the `knexfile` configuration object and then call `.migrate.latest()`, which returns a `Promise`, so we must handle both success and failure scenarios (check how it's done in `/data/database.js`).
-6. This object that is responsible for the programatic migrations can then be exported and used in your `routes` to query or mutate data in the actual database.
+2. This `knexfile.js` setups an `object` with a specific set of properties depending on the Database Provider your project uses (in this case PostgreSQL).
+3. The `knexfile.js` configuration `object` must point to the folder relative to it's path, where the `migrations` folder will be located (in this case, the `/migrations`).
+4. At the top of the `knexfile.js`, we must call `dotenv` and configure it. In case you move it to a subfolder, you must pass an object to the `.config({ path: <path> })` method providing the path back to the `/` folder where your `.env` should be.
+5. In order to have migrations be executed automatically on each server startup, we must call the `.migrate.latest()` method on the `knex` instance, which returns a `Promise`, so we must handle both success and failure scenarios (check how it's done in `knexfile.js`).
 
 > [!WARNING]
-> If you plan on adding a new migration, make sure to stop your `nodemon` execution locally to avoid the auto-refresh to pick up the migration before it's ready to be applied to the database. Otherwise, you will have to manually delete the migration record from the database and re-run the server to pick up correclty.
+> If you plan on **adding a new migration** while the server is running, make sure to **stop** your `nodemon` execution before doing `knex migrate:make <migration-name>`.
 
 ## Getting started
 
-### Optional
+- Make a copy of the `.env.example` file found at the `/` root folder and rename it to `.env` with your corresponding database values.
 
-- Make a copy of the `.env.example` file found at the `/` root folder and rename it to `.env` with your corresponding database values (Refer to the `docker-compose.yaml` if you want to quickly run a PostgreSQL instance on your machine).
+### Optional
 
 - Start up your PostgreSQL Docker container with
 
@@ -53,8 +52,7 @@ npm install
 npm run dev
 ```
 
-Once you see the message "Server listening on http://localhost:3000" you should be good to go.
+Once you see the message "Server listening on http://localhost:3000" you should be able to send HTTP Request to the available endpoints with [Postman](https://www.postman.com/) or any tool for your choice.
 
-> [!NOTE]
-> To confirm that everything was setup smoothly, you can install your favorite Database Management Tool and connect directly to the database to see how each table has been created and from where the Products API is fetching and creating data from.
-> In case you don't have any, I would recommend using [DBeaver Community](https://dbeaver.io/download/) which a great free GUI cross-platform.
+> [!TIP]
+> To confirm everything is running fine, you can install [DBeaver Community](https://dbeaver.io/download/) which is a great free GUI cross-platform, or your prefered tool.
