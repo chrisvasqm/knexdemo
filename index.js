@@ -8,6 +8,13 @@ const app = express();
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
+
+app.use('/api/products', (req, res) => {
+    database('products')
+        .then(products => res.send(products))
+        .catch(_ => res.status(500).send('Failed to fetch products'));
+});
+
 app.use((req, res) => {
     res.status(404).send('Not found');
 })
