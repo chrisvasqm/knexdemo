@@ -1,3 +1,6 @@
+// This the only way that Knex can ready dotenv values
+require('dotenv').config({ path: '../.env' });
+
 const config = {
   client: process.env.DATABASE_CLIENT,
   connection: {
