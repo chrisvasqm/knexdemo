@@ -1,6 +1,6 @@
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config();
 
-module.exports = {
+const config = {
     client: process.env.DATABASE_CLIENT,
     connection: {
         host: process.env.DATABASE_HOST,
@@ -11,6 +11,8 @@ module.exports = {
     },
     migrations: {
         tableName: 'knex_migrations',
-        directory: './migrations'
-    }
+        directory: './data/migrations'
+    },
 }
+
+module.exports = config;
