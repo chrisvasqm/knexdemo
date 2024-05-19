@@ -1,6 +1,5 @@
 const winston = require('winston');
 
-// Configure Winston
 winston.configure({
     level: 'info',
     format: winston.format.simple(),
