@@ -1,5 +1,6 @@
 require('dotenv').config();
 require('express-async-errors');
+const logger = require('./logger');
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -7,6 +8,10 @@ const errorMiddleware = require('./middleware/error');
 const productsRouter = require('./routes/products');
 
 const app = express();
+
+process.on('uncaughtException', (exception) => {
+    logger.error(exception.message, exception);
+});
 
 app.use(cors());
 app.use(helmet());
