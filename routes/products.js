@@ -6,7 +6,7 @@ const schema = z.object({
     name: z.string({ required_error: 'Name is required' }).min(1, 'Name must be at least 1 character long'),
     price: z.number({ required_error: 'Price is required' }).positive('Price must be greater than 0'),
     quantity: z.number({ required_error: 'Quantity is required' }).positive('Quantity must be greater than 0')
-})
+});
 
 const router = Router();
 
@@ -25,8 +25,7 @@ router.post('/products', async (req, res) => {
     const product = await knex('products')
         .insert({ name, price, quantity })
         .returning('*');
-
-    res.send(product);
+    res.status(201).send(product);
 });
 
 module.exports = router;
