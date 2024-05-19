@@ -25,6 +25,7 @@ router.post('/products', async (req, res) => {
     const product = await knex('products')
         .insert({ name, price, quantity })
         .returning('*');
+        
     res.status(201).send(product);
 });
 
