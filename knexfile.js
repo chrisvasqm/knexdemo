@@ -21,7 +21,6 @@ const knex = require('knex')({
 });
 
 knex.migrate.latest()
-    .then(() => console.log('Migrations have run successfully'))
     .catch(error => console.error('Error running migrations:', error));
 
 module.exports = knex;
