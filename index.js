@@ -1,6 +1,5 @@
 require('dotenv').config();
 require('express-async-errors');
-
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -15,7 +14,7 @@ app.use(express.json());
 
 app.use('/api', productsRouter);
 
-// This middleware must go after all the routers
+// Error middleware must go after all other routers
 app.use(errorMiddleware);
 
 const port = process.env.PORT || 3030;
