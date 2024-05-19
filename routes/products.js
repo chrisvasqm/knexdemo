@@ -10,24 +10,23 @@ const schema = z.object({
 
 const router = Router();
 
-router.get('/products', (_, response) => {
-    knex('products')
-        .then(products => response.send(products))
-        .catch(_ => response.status(500).send('Failed to fetch products'));
+router.get('/products', async (_, res) => {
+    const products = await knex('products');
+    res.send(products);
 });
 
-router.post('/products', (request, response) => {
-    const validation = schema.safeParse(request.body);
+router.post('/products', async (req, res) => {
+    const validation = schema.safeParse(req.body);
     if (!validation.success)
-        return response.status(400).send(validation.error.format());
+        return res.status(400).send(validation.error.errors[0].message);
 
-    const { name, price, quantity } = request.body;
+    const { name, price, quantity } = req.body;
 
-    knex('products')
+    const product = await knex('products')
         .insert({ name, price, quantity })
-        .returning('*')
-        .then(product => response.send(product))
-        .catch(_ => response.status(500).send('Failed to save new product'));
+        .returning('*');
+
+    res.send(product);
 });
 
 module.exports = router;
