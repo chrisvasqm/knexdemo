@@ -36,7 +36,7 @@ docker compose up -d
 ```
 
 > [!NOTE]
-> Alternatively, you can install PostgreSQL in your local machine manually.
+> Alternatively, you can install PostgreSQL on your local machine manually.
 
 ### Required
 
@@ -52,7 +52,7 @@ npm install
 npm run dev
 ```
 
-Once you see the message "Server listening on http://localhost:3000" you should be able to send HTTP request to the available endpoints with [Postman](https://www.postman.com/) or any tool for your choice.
+Once you see the message "Server listening on http://localhost:3000" you should be able to send HTTP requests to the available endpoints with [Postman](https://www.postman.com/) or any tool of your choice.
 
 > [!TIP]
-> To confirm everything is running fine, you can install [DBeaver Community](https://dbeaver.io/download/) which is a great free GUI cross-platform, or your preferred tool.
+> To confirm everything is running fine, you can install [DBeaver Community](https://dbeaver.io/download/) which is a great free cross-platform GUI, or your preferred tool.
