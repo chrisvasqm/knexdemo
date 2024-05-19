@@ -13,6 +13,10 @@ process.on('uncaughtException', (exception) => {
     logger.error(exception.message, exception);
 });
 
+process.on('unhandledRejection', (exception) => {
+    logger.error(exception.message, exception);
+});
+
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
