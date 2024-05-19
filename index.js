@@ -9,6 +9,12 @@ const productsRouter = require('./routes/products');
 
 const app = express();
 
+app.use(cors());
+app.use(helmet());
+app.use(express.json());
+
+app.use('/api', productsRouter);
+
 process.on('uncaughtException', (exception) => {
     logger.error(exception.message, exception);
 });
@@ -16,12 +22,6 @@ process.on('uncaughtException', (exception) => {
 process.on('unhandledRejection', (exception) => {
     logger.error(exception.message, exception);
 });
-
-app.use(cors());
-app.use(helmet());
-app.use(express.json());
-
-app.use('/api', productsRouter);
 
 // Error middleware must go after all other routers
 app.use(errorMiddleware);
