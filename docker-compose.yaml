@@ -5,9 +5,9 @@ services:
     ports:
       - "5432:5432"
     environment:
+      POSTGRES_DB: knexdemo
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: knexdemo
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
